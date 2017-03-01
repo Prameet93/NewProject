@@ -72,11 +72,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
+
+                Intent myIntent = new Intent(MainActivity.this, Main2Activity.class);
                 String packageName = adapter.getTempArray().get(position);
-                Intent launchIntent = getPackageManager().getLaunchIntentForPackage(packageName);
-                if (launchIntent != null) {
-                    startActivity(launchIntent);//null pointer check in case package name was not found
-                }
+
+                Bundle bundle = new Bundle();
+
+                bundle.putString("stuff", packageName);
+
+                myIntent.putExtras(bundle);
+
+                startActivityForResult(myIntent, 0);
+
             }
         });
     }
@@ -144,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
                     List<String> FilteredArrList = new ArrayList<String>();
                     for (int i = 0; i < namesArray.size(); i++) {
                         String data = namesArray.get(i);
-                        if (data.toLowerCase().startsWith(cs.toString().toLowerCase())) {
+                        if (data.toLowerCase().contains(cs.toString().toLowerCase())) {
                             FilteredArrList.add(innerArray.get(i));
                         }
                     }
