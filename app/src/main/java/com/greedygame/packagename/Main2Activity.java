@@ -1,6 +1,7 @@
 package com.greedygame.packagename;
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -13,11 +14,13 @@ import android.widget.TextView;
 import static com.greedygame.packagename.R.id.textView;
 
 public class Main2Activity extends AppCompatActivity {
+
     private View.OnClickListener buttonListener;
     TextView packageName;
-    TextView AppName;
-
-    ImageView AppIcon;
+    TextView appName;
+    String version;
+    int verCode;
+    ImageView appIcon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +28,10 @@ public class Main2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
 
         packageName = (TextView) findViewById(textView);
-        AppName = (TextView) findViewById(R.id.textView1);
-        AppIcon = (ImageView) findViewById(R.id.imageView);
+        appName = (TextView) findViewById(R.id.textView1);
+        appIcon = (ImageView) findViewById(R.id.imageView);
+        TextView tvVersionName = (TextView) findViewById(R.id.textView2);
+        TextView tvVersionCode = (TextView) findViewById(R.id.textView3);
 
         Bundle bundle = getIntent().getExtras();
 
@@ -37,16 +42,27 @@ public class Main2Activity extends AppCompatActivity {
 
         try {
             String appName = (String) packageManager.getApplicationLabel(packageManager.getApplicationInfo(stuff, PackageManager.GET_META_DATA));
-            AppName.setText(appName);
+            this.appName.setText(appName);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
         try {
             Drawable icon = getPackageManager().getApplicationIcon(stuff);
-            AppIcon.setImageDrawable(icon);
+            appIcon.setImageDrawable(icon);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
+        try {
+            PackageInfo pInfo = getPackageManager().getPackageInfo(stuff, 0);
+            version = pInfo.versionName;
+            tvVersionName.setText(version);
+            verCode = pInfo.versionCode;
+            tvVersionCode.setText(""+verCode);
+
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
 
         Button button = (Button) findViewById(R.id.button);
         buttonListener =  new View.OnClickListener(){

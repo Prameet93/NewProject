@@ -12,11 +12,13 @@
     tools:context="com.greedygame.packagename.Main2Activity">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
         android:id="@+id/imageView"
         android:padding="5dp"
         />
+
 
     <TextView
         android:layout_width="match_parent"
@@ -26,10 +28,8 @@
         android:padding="@dimen/activity_horizontal_margin"
         android:text="Demo1"
         android:textColor="#000"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
-
+        android:layout_below="@+id/imageView"
+       />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -49,21 +49,31 @@
         android:textColor="#000"
         android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="32dp"/>
+        android:layout_alignParentStart="true"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textView2"
-        android:layout_gravity="center"
-        android:padding="@dimen/activity_horizontal_margin"
-        android:text="ICON"
+        android:text="Demo3"
         android:textColor="#000"
+        android:layout_marginTop="12dp"
         android:layout_below="@+id/textView1"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="47dp"/>
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:text="Demo4"
+        android:textColor="#000"
+        android:layout_marginTop="21dp"
+        android:layout_below="@+id/textView2"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignStart="@+id/textView2"/>
 
 
 </RelativeLayout>
